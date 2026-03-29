@@ -1,8 +1,6 @@
-node_modules
-npm-debug.log
+node_modules/
 .env
-.git
-.gitignore
+package-lock.json
 firebase/serviceAccountKey.json
 debug_screenshots/
 *.png
@@ -10,3 +8,4 @@ error.log
 README.md
 SETUP.md
 test_apply.js
+.git/
