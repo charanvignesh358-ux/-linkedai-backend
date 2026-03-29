@@ -1,0 +1,9 @@
+node_modules/
+.env
+package-lock.json
+firebase/serviceAccountKey.json
+
+# Debug screenshots (binary files — never commit these)
+debug_screenshots/
+*.png
+error.log

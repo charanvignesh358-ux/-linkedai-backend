@@ -1,27 +1,27 @@
-# Use the official Playwright image for Ubuntu Jammy
+# Use the official Playwright image — has Chromium + all deps pre-installed
 FROM mcr.microsoft.com/playwright:v1.41.0-jammy
 
 # Create app directory
 WORKDIR /app
 
-# Switch to root user to fix directory permissions if necessary
+# Switch to root for permissions
 USER root
 
-# Copy package.json and package-lock.json first for better caching
+# Copy package files first (better layer caching)
 COPY package*.json ./
 
-# Install dependencies
-RUN npm install
+# Install Node dependencies (skip Playwright browser download — already in image)
+RUN npm install --omit=dev
 
-# Copy all the backend code
+# Copy all backend source code
 COPY . .
 
-# Ensure standard node port mapping works for Hugging Face Spaces which runs on 7860
-ENV PORT=7860
-EXPOSE 7860
+# Set environment variables
+ENV PORT=8080
+ENV PLAYWRIGHT_BROWSERS_PATH=/ms-playwright
 
-# Adjust permissions for any playwright artifacts if needed, though usually handled by the image
-RUN npx playwright install chromium
+# Expose the port Railway uses
+EXPOSE 8080
 
-# Start the application
-CMD ["npm", "start"]
+# Start the server
+CMD ["node", "server.js"]

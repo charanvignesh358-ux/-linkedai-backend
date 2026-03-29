@@ -4,3 +4,9 @@ npm-debug.log
 .git
 .gitignore
 firebase/serviceAccountKey.json
+debug_screenshots/
+*.png
+error.log
+README.md
+SETUP.md
+test_apply.js
